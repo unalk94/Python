@@ -1,0 +1,76 @@
+ogrenciler = []
+
+def ogrenciEkle(ogrenciAdi, notu):
+    ogrenci = {'isim': ogrenciAdi, 'not': notu}
+    ogrenciler.append(ogrenci)
+    print(f"{ogrenciAdi} adlı öğrenci eklendi.")
+
+def notGuncelle(ogrenciAdi, yeniNot):
+    for ogrenci in ogrenciler:
+        if ogrenci['isim'] == ogrenciAdi:
+            ogrenci['not'] = yeniNot
+            print(f"{ogrenciAdi} adlı öğrencinin notu güncellendi.")
+            return
+    print(f"{ogrenciAdi} adlı öğrenci bulunamadı.")
+
+def notSil(ogrenciAdi):
+    for ogrenci in ogrenciler:
+        if ogrenci['isim'] == ogrenciAdi:
+            ogrenciler.remove(ogrenci)
+            print(f"{ogrenciAdi} adlı öğrencinin notu silindi.")
+            return
+    print(f"{ogrenciAdi} adlı öğrenci bulunamadı.")
+
+def notlariGoruntule():
+    if not ogrenciler:
+        print("Hiçbir öğrenci bulunamadı.")
+    else:
+        for ogrenci in ogrenciler:
+            print(f"Öğrenci: {ogrenci['isim']}, Not: {ogrenci['not']}")
+
+def enYuksekNot():
+    if not ogrenciler:
+        print("Hiçbir öğrenci bulunamadı.")
+    else:
+        enYuksek = ogrenciler[0]
+        for ogrenci in ogrenciler:
+            if ogrenci['not'] > enYuksek['not']:
+                enYuksek = ogrenci
+        print(f"En yüksek notu alan öğrenci: {enYuksek['isim']}, Not: {enYuksek['not']}")
+
+while True:
+    print("1. Öğrenci Ekle")
+    print("2. Not Güncelle")
+    print("3. Not Sil")
+    print("4. Notları Görüntüle")
+    print("5. En Yüksek Not")
+    print("'q' Çıkış")
+    
+    secim = input("Bir seçenek girin: ")
+    
+    if secim.lower() == "q":
+        print("Başarı ile çıkış yapıldı.")
+        break
+
+    elif secim == "1":
+        ogrenciAdi = input("Öğrencinin ismini giriniz: ")
+        notu = float(input("Öğrencinin notunu giriniz: "))
+        ogrenciEkle(ogrenciAdi, notu)
+
+    elif secim == "2":
+        ogrenciAdi = input("Notunu güncellemek istediğiniz öğrencinin ismini giriniz: ")
+        yeniNot = float(input("Yeni notu giriniz: "))
+        notGuncelle(ogrenciAdi, yeniNot)
+
+    elif secim == "3":
+        ogrenciAdi = input("Notunu silmek istediğiniz öğrencinin ismini giriniz: ")
+        notSil(ogrenciAdi)
+
+    elif secim == "4":
+        notlariGoruntule()
+
+    elif secim == "5":
+        enYuksekNot()
+
+    else:
+        print("Geçersiz seçenek, lütfen tekrar deneyin.")
