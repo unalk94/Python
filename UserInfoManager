@@ -1,0 +1,50 @@
+kullanicilar = {}
+
+def bilgiEkle():
+    ad = input("Adınızı girin: ")
+    yas = input("Yaşınızı girin: ")
+    eposta = input("E-posta adresinizi girin: ")
+    telefon = input("Telefon numaranızı girin: ")
+
+    kullanicilar[ad] = {"yas": yas, "eposta": eposta, "telefon": telefon}
+    print(f"{ad} adlı kullanıcı bilgileri eklendi.")
+
+def bilgiGoruntule(ad):
+    if ad in kullanicilar:
+        bilgi = kullanicilar[ad]
+        print(f"Ad: {ad}, Yaş: {bilgi['yas']}, E-posta: {bilgi['eposta']}, Telefon: {bilgi['telefon']}")
+    else:
+        print(f"{ad} adlı kullanıcı bulunamadı.")
+
+def bilgiSil(ad):
+    if ad in kullanicilar:
+        kullanicilar.pop(ad)
+        print(f"{ad} adlı kullanıcı bilgileri silindi.")
+    else:
+        print(f"{ad} adlı kullanıcı bulunamadı.")
+
+while True:
+    print("1. Bilgi Ekle")
+    print("2. Bilgi Görüntüle")
+    print("3. Bilgi Sil")
+    print("'q' Çıkış")
+
+    secim = input("Yapmak istediğiniz işlemi seçin: ")
+
+    if secim.lower() == "q":
+        print("Başarı ile çıkış yapıldı.")
+        break
+
+    elif secim == "1":
+        bilgiEkle()
+
+    elif secim == "2":
+        ad = input("Görüntülemek istediğiniz kullanıcı adını giriniz: ")
+        bilgiGoruntule(ad)
+
+    elif secim == "3":
+        ad = input("Silmek istediğiniz kullanıcı adını giriniz: ")
+        bilgiSil(ad)
+
+    else:
+        print("Hatalı seçim yaptınız.")
