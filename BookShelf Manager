@@ -1,0 +1,50 @@
+kitap_isimleri = ["Savaş ve Barış", "1984", "Bülbülü Öldürmek", "Kırmızı Pazartesi"]
+kitap_durumlari = ["Müsait", "Ödünçte", "Müsait", "Müsait"]
+while True:
+    print("Ana Menü")
+    print("1. Kitap Ekle")
+    print("2. Kitapları Göster")
+    print("3. Kitap Ödünç Al")
+    print("4. Kitap İade Et")
+    print("5. Çıkış")
+    
+    secim = int(input("bir işlem seçiniz:"))
+    
+    if secim == 1:
+        yeni_kitap = input("eklemek istediğiniz kitabı giriniz:")
+        kitap_isimleri.append(yeni_kitap)
+        kitap_durumlari.append("müsait")
+        print(f"{yeni_kitap} kütüphaneye eklendi")
+        
+    elif secim == 2:
+        print("mevcut kitaplar")
+        for i in range(len(kitap_isimleri)):
+            print(f"{kitap_isimleri[i]} - Durum {kitap_durumlari[i]}")
+        
+    elif secim == 3:
+        odunc_kitap = input("ödünç almak istediğiniz kitabı yazınız :")
+        if odunc_kitap in kitap_isimleri:
+            index = kitap_isimleri.index(odunc_kitap)
+            if kitap_durumlari[index] == "Müsait":
+                kitap_durumlari[index] = "Ödünç"
+                print(f"{odunc_kitap} alındı")
+            else:
+                print(f"{odunc_kitap} zaten alındı")
+    
+        else:
+            print(f"{odunc_kitap}bulunamadı")
+            
+            
+    elif secim == 4:
+        iade_kitap = input("İade etmek istediğiniz kitabın ismi: ")
+        if iade_kitap in kitap_isimleri:
+            index = kitap_isimleri.index(iade_kitap)
+            if kitap_durumlari[index] == "Ödünçte":
+                kitap_durumlari[index] = "Müsait"
+                print(f"{iade_kitap} iade edildi.")
+            else:
+                print(f"{iade_kitap} zaten müsait.")
+                  
+    elif secim == 5:
+        break
+                  
