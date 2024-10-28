@@ -1,0 +1,92 @@
+kullaniciAdlari = ["ali", "ayse"]
+kullaniciSifreleri = ["1234", "5678"]
+kullaniciBakiyeleri = [1000, 1500]
+
+
+def kullaniciIndeksiniBul(kullaniciAdi):
+    if kullaniciAdi in kullaniciAdlari:
+        return kullaniciAdlari.index(kullaniciAdi)
+    else:
+        return -1
+
+
+def bakiyeGoruntule(kullaniciIndeksi):
+    print(f"Mevcut bakiye: {kullaniciBakiyeleri[kullaniciIndeksi]} TL")
+
+
+def paraCek(kullaniciIndeksi, miktar):
+    if kullaniciBakiyeleri[kullaniciIndeksi] >= miktar:
+        kullaniciBakiyeleri[kullaniciIndeksi] -= miktar
+        print(f"{miktar} TL çekildi. Yeni bakiye: {kullaniciBakiyeleri[kullaniciIndeksi]} TL")
+    else:
+        print("Yetersiz bakiye.")
+
+
+def paraYatir(kullaniciIndeksi, miktar):
+    kullaniciBakiyeleri[kullaniciIndeksi] += miktar
+    print(f"{miktar} TL yatırıldı. Yeni bakiye: {kullaniciBakiyeleri[kullaniciIndeksi]} TL")
+
+
+def sifreDegistir(kullaniciIndeksi, eskiSifre, yeniSifre):
+    if kullaniciSifreleri[kullaniciIndeksi] == eskiSifre:
+        kullaniciSifreleri[kullaniciIndeksi] = yeniSifre
+        print("Şifre başarıyla değiştirildi.")
+    else:
+        print("Eski şifre yanlış.")
+
+
+def cikisYap():
+    print("Başarı ile çıkış yapıldı.")
+    exit()
+
+
+def kullaniciGirisi():
+    kullaniciAdi = input("Kullanıcı adınızı girin: ")
+    sifre = input("Şifrenizi girin: ")
+    kullaniciIndeksi = kullaniciIndeksiniBul(kullaniciAdi)
+    if kullaniciIndeksi != -1 and kullaniciSifreleri[kullaniciIndeksi] == sifre:
+        print("Giriş başarılı.")
+        return kullaniciIndeksi
+    else:
+        print("Kullanıcı adı veya şifre yanlış.")
+        return -1
+
+
+def atmUygulamasi():
+    kullaniciIndeksi = kullaniciGirisi()
+    if kullaniciIndeksi == -1:
+        return
+
+    while True:
+        print("1. Bakiye Görüntüle")
+        print("2. Para Çek")
+        print("3. Para Yatır")
+        print("4. Şifre Değiştir")
+        print("'q' Çıkış")
+        
+        secim = input("Bir seçenek girin: ")
+        
+        if secim.lower() == "q":
+            cikisYap()
+
+        elif secim == "1":
+            bakiyeGoruntule(kullaniciIndeksi)
+
+        elif secim == "2":
+            miktar = float(input("Çekmek istediğiniz miktarı girin: "))
+            paraCek(kullaniciIndeksi, miktar)
+
+        elif secim == "3":
+            miktar = float(input("Yatırmak istediğiniz miktarı girin: "))
+            paraYatir(kullaniciIndeksi, miktar)
+
+        elif secim == "4":
+            eskiSifre = input("Eski şifrenizi girin: ")
+            yeniSifre = input("Yeni şifrenizi girin: ")
+            sifreDegistir(kullaniciIndeksi, eskiSifre, yeniSifre)
+
+        else:
+            print("Geçersiz seçenek, lütfen tekrar deneyin.")
+
+
+atmUygulamasi()
