@@ -5,13 +5,13 @@ Python Projeleri deposuna hoş geldiniz! Bu depo, çeşitli Python betikleri ve 
 İçindekiler
 Projeler
 
-# Kütüphane Kitap Yönetim Sistemi
+Kütüphane Kitap Yönetim Sistemi
 
-# Alışveriş Listesi Yönetim Sistemi
+Alışveriş Listesi Yönetim Sistemi
 
-# Kullanıcı Bilgi Yönetim Sistemi
+Kullanıcı Bilgi Yönetim Sistemi
 
-# Kelime Sayma Programı
+Kelime Sayma Programı
 
 
 Projeler
