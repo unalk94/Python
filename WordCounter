@@ -1,0 +1,13 @@
+def kelimeSayac(metin):
+    kelimeler = metin.split()
+    kelimeSayilari = {}
+
+    for kelime in kelimeler:
+        if kelime in kelimeSayilari:
+            kelimeSayilari[kelime] +=1
+        else:
+            kelimeSayilari[kelime] = 1
+    return kelimeSayilari
+metin = input("bir metin giriniz: ")
+sonuc = kelimeSayac(metin)
+print(sonuc)
