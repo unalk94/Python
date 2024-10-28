@@ -1,0 +1,73 @@
+alisverisListesi = []
+
+def urunEkle(urunAdi, miktar, fiyat):
+    urun = {'isim': urunAdi, 'miktar': miktar, 'fiyat': fiyat}
+    alisverisListesi.append(urun)
+    print(f"{urunAdi} adlı ürün eklendi.")
+
+def urunGuncelle(urunAdi, yeniMiktar, yeniFiyat):
+    for urun in alisverisListesi:
+        if urun['isim'] == urunAdi:
+            urun['miktar'] = yeniMiktar
+            urun['fiyat'] = yeniFiyat
+            print(f"{urunAdi} adlı ürün güncellendi.")
+            return
+    print(f"{urunAdi} adlı ürün bulunamadı.")
+
+def urunSil(urunAdi):
+    for urun in alisverisListesi:
+        if urun['isim'] == urunAdi:
+            alisverisListesi.remove(urun)
+            print(f"{urunAdi} adlı ürün silindi.")
+            return
+    print(f"{urunAdi} adlı ürün bulunamadı.")
+
+def listeyiGoruntule():
+    if not alisverisListesi:
+        print("Alışveriş listesi boş.")
+    else:
+        for urun in alisverisListesi:
+            print(f"Ürün: {urun['isim']}, Miktar: {urun['miktar']}, Fiyat: {urun['fiyat']}")
+
+def toplamMaliyet():
+    toplam = sum(urun['miktar'] * urun['fiyat'] for urun in alisverisListesi)
+    print(f"Toplam maliyet: {toplam}")
+
+while True:
+    print("1. Ürün Ekle")
+    print("2. Ürün Güncelle")
+    print("3. Ürün Sil")
+    print("4. Listeyi Görüntüle")
+    print("5. Toplam Maliyet")
+    print("'q' Çıkış")
+    
+    secim = input("Bir seçenek girin: ")
+    
+    if secim.lower() == "q":
+        print("Başarı ile çıkış yapıldı.")
+        break
+
+    elif secim == "1":
+        urunAdi = input("Ürünün ismini giriniz: ")
+        miktar = int(input("Ürünün miktarını giriniz: "))
+        fiyat = float(input("Ürünün fiyatını giriniz: "))
+        urunEkle(urunAdi, miktar, fiyat)
+
+    elif secim == "2":
+        urunAdi = input("Güncellemek istediğiniz ürünün ismini giriniz: ")
+        yeniMiktar = int(input("Yeni miktarı giriniz: "))
+        yeniFiyat = float(input("Yeni fiyatı giriniz: "))
+        urunGuncelle(urunAdi, yeniMiktar, yeniFiyat)
+
+    elif secim == "3":
+        urunAdi = input("Silmek istediğiniz ürünün ismini giriniz: ")
+        urunSil(urunAdi)
+
+    elif secim == "4":
+        listeyiGoruntule()
+
+    elif secim == "5":
+        toplamMaliyet()
+
+    else:
+        print("Geçersiz seçenek, lütfen tekrar deneyin.")
